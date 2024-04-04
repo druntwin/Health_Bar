@@ -1,27 +1,25 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
-{    
-    [SerializeField] private Slider _healthSlider;
+{
+    [SerializeField] protected Health _health;
 
-    private float _maxHealth;
-    private float _newValue;
-
-    public void SetMaxHealth(float maxHealth)
+    private void OnEnable()
     {
-        _maxHealth = maxHealth;
+        _health.OnChanged += UpdateBar;
     }
 
-    public void UpdateBar(float healthMount)
+    private void OnDisable()
     {
-        _newValue = healthMount / _maxHealth;
+        _health.OnChanged -= UpdateBar;
+    }
 
-        if (_healthSlider != null)
-        {
-            _healthSlider.value = _newValue;
-        }
+    public virtual void UpdateBar() { }
+
+    public float GetNewSliderValue()
+    {
+        return _health.Mount / _health.MaxMount;
     }
 }

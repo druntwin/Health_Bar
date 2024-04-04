@@ -1282,85 +1282,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 217a75a2af4eb3841b9fb2d7c6515271, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _maxHealth: 100
-  MaxHealthAssigned:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1534615126}
-        m_TargetAssemblyTypeName: HeathText, Assembly-CSharp
-        m_MethodName: SetMaxHealth
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1534615125}
-        m_TargetAssemblyTypeName: HealthBar, Assembly-CSharp
-        m_MethodName: SetMaxHealth
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1534615124}
-        m_TargetAssemblyTypeName: HealthSmoothBar, Assembly-CSharp
-        m_MethodName: SetMaxHealth
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  HealthChanged:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1534615126}
-        m_TargetAssemblyTypeName: HeathText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1534615125}
-        m_TargetAssemblyTypeName: HealthBar, Assembly-CSharp
-        m_MethodName: UpdateBar
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1534615124}
-        m_TargetAssemblyTypeName: HealthSmoothBar, Assembly-CSharp
-        m_MethodName: UpdateSmoothBar
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  _plusButton: {fileID: 73873474}
+  _minusButton: {fileID: 90685314}
+  _maxMount: 100
+  _changeMount: 10
 --- !u!212 &1463278011
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1547,6 +1472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2dc6d99584376214e99f320b562bb919, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: {fileID: 1463278010}
   _healthSmoothSlider: {fileID: 1978672447}
   _smoothStep: 0.1
 --- !u!114 &1534615125
@@ -1561,6 +1487,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1513e3c580b63034cb5fd0e529818767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: {fileID: 1463278010}
   _healthSlider: {fileID: 791164567}
 --- !u!114 &1534615126
 MonoBehaviour:
@@ -1574,6 +1501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74c9d12ec294d96489dac63675f8a7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _health: {fileID: 0}
   _healthText: {fileID: 1826180471}
   _color: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &1779776199

@@ -3,39 +3,32 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HealthSmoothBar : MonoBehaviour
+public class HealthSmoothBar : HealthBar
 {
-    [SerializeField] private Slider _healthSmoothSlider;
+    [SerializeField] private Slider _slider;
     [SerializeField] private float _smoothStep;
 
-    private float _maxHealth;
     private float _newValue;
 
-    public void SetMaxHealth(float maxHealth)
+    public override void UpdateBar()
     {
-        _maxHealth = maxHealth;
-    }
-
-    public void UpdateSmoothBar(float healthMount)
-    {
-        _newValue = healthMount / _maxHealth;
-
-        if (_healthSmoothSlider != null)
-        {
+        if (_slider != null)
+        {            
+            _newValue = GetNewSliderValue();
             StartCoroutine(UpdateSmoothSlider());
         }
     }
 
-    IEnumerator UpdateSmoothSlider()
+    private IEnumerator UpdateSmoothSlider()
     {
         float minValuesDifference = 0.001f;
 
-        while (_healthSmoothSlider.value != _newValue)
+        while (_slider.value != _newValue)
         {
-            _healthSmoothSlider.value = Mathf.SmoothStep(_healthSmoothSlider.value, _newValue, _smoothStep);
+            _slider.value = Mathf.SmoothStep(_slider.value, _newValue, _smoothStep);
 
-            if (Mathf.Abs(_healthSmoothSlider.value - _newValue) < minValuesDifference)
-                _healthSmoothSlider.value = _newValue;
+            if (Mathf.Abs(_slider.value - _newValue) < minValuesDifference)
+                _slider.value = _newValue;
 
             yield return null;
         }

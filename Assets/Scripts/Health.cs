@@ -2,35 +2,53 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
+using System;
 
 public class Health : MonoBehaviour
-{    
-    [SerializeField] private int _maxHealth;
+{
+    [SerializeField] private Button _plusButton;
+    [SerializeField] private Button _minusButton;
+    [SerializeField] private float _maxMount;
+    [SerializeField] private float _changeMount;
     
-    private int _health;
-    private int _minHealth = 0;
+    private float _mount;
+    private float _minMount = 0;
 
-    public UnityEvent<float> MaxHealthAssigned;
-    public UnityEvent<float> HealthChanged;
+    public float MaxMount => _maxMount;
+    public float Mount => _mount;
+
+    public Action OnChanged;
 
     private void Start()
     {
-        _health = _maxHealth;
-        MaxHealthAssigned.Invoke(_maxHealth);
-        HealthChanged.Invoke(_health);
+        _mount = _maxMount;
+        OnChanged.Invoke();
     }
 
-    public void Reduse(int reducer)
+    private void OnEnable()
     {
-        _health = Mathf.Clamp(_health - reducer, _minHealth, _maxHealth);
-
-        HealthChanged.Invoke(_health);
+        _plusButton.onClick.AddListener(() => Add());
+        _minusButton.onClick.AddListener(() => Reduse());
     }
 
-    public void Add(int health)
+    private void OnDisable()
     {
-        _health = Mathf.Clamp(_health + health, _minHealth, _maxHealth);
+        _plusButton.onClick.RemoveAllListeners();
+        _minusButton.onClick.RemoveAllListeners();
+    }
 
-        HealthChanged.Invoke(_health);
+    public void Reduse()
+    {
+        _mount = Mathf.Clamp(_mount - _changeMount, _minMount, _maxMount);
+
+        OnChanged.Invoke();
+    }
+
+    public void Add()
+    {
+        _mount = Mathf.Clamp(_mount + _changeMount, _minMount, _maxMount);
+
+        OnChanged.Invoke();
     }
 }
