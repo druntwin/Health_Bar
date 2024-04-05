@@ -9,17 +9,23 @@ public class HealthSmoothBar : HealthBar
     [SerializeField] private float _smoothStep;
 
     private float _newValue;
+    private bool isSliderStop = true;
 
     public override void UpdateBar()
     {
         if (_slider != null)
         {            
             _newValue = GetNewSliderValue();
-            StartCoroutine(UpdateSmoothSlider());
+
+            if (isSliderStop == true)
+            {
+                isSliderStop = false;
+                StartCoroutine(Slide());
+            } 
         }
     }
 
-    private IEnumerator UpdateSmoothSlider()
+    private IEnumerator Slide()
     {
         float minValuesDifference = 0.001f;
 
@@ -32,5 +38,7 @@ public class HealthSmoothBar : HealthBar
 
             yield return null;
         }
+
+        isSliderStop = true;
     }
 }

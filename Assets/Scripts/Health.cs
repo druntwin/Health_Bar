@@ -9,20 +9,21 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private Button _plusButton;
     [SerializeField] private Button _minusButton;
-    [SerializeField] private float _maxMount;
-    [SerializeField] private float _changeMount;
+    [SerializeField] private float _maxValue;
+    [SerializeField] private float _changeValue;
     
-    private float _mount;
-    private float _minMount = 0;
+    private float _value;
+    private float _minValue = 0;
 
-    public float MaxMount => _maxMount;
-    public float Mount => _mount;
+    public float MaxValue => _maxValue;
+    public float Value => _value;
 
-    public Action OnChanged;
+    public delegate void ChangeDelegate();
+    public event ChangeDelegate OnChanged;
 
     private void Start()
     {
-        _mount = _maxMount;
+        _value = _maxValue;
         OnChanged.Invoke();
     }
 
@@ -40,14 +41,14 @@ public class Health : MonoBehaviour
 
     public void Reduse()
     {
-        _mount = Mathf.Clamp(_mount - _changeMount, _minMount, _maxMount);
+        _value = Mathf.Clamp(_value - _changeValue, _minValue, _maxValue);
 
         OnChanged.Invoke();
     }
 
     public void Add()
     {
-        _mount = Mathf.Clamp(_mount + _changeMount, _minMount, _maxMount);
+        _value = Mathf.Clamp(_value + _changeValue, _minValue, _maxValue);
 
         OnChanged.Invoke();
     }

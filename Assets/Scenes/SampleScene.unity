@@ -1260,8 +1260,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _plusButton: {fileID: 73873474}
   _minusButton: {fileID: 90685314}
-  _maxMount: 100
-  _changeMount: 10
+  _maxValue: 100
+  _changeValue: 10
 --- !u!212 &1463278011
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1323,8 +1323,8 @@ Transform:
   m_GameObject: {fileID: 1463278009}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.36, y: -3.01, z: 0}
-  m_LocalScale: {x: 2.4142, y: 2.4142, z: 2.4142}
+  m_LocalPosition: {x: -0.06, y: -3.99, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

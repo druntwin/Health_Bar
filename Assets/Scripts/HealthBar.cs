@@ -4,22 +4,24 @@ using UnityEngine;
 
 public class HealthBar : MonoBehaviour
 {
-    [SerializeField] protected Health _health;
+    [SerializeField] private Health _health;
+
+    protected Health Health => _health;
 
     private void OnEnable()
     {
-        _health.OnChanged += UpdateBar;
+        Health.OnChanged += UpdateBar;
     }
 
     private void OnDisable()
     {
-        _health.OnChanged -= UpdateBar;
+        Health.OnChanged -= UpdateBar;
     }
 
     public virtual void UpdateBar() { }
 
     public float GetNewSliderValue()
     {
-        return _health.Mount / _health.MaxMount;
+        return Health.Value / Health.MaxValue;
     }
 }

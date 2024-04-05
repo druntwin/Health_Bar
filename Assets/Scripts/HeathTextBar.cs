@@ -17,7 +17,7 @@ public class HeathTextBar : HealthBar
     {
         if (_healthText != null)
         {
-            _healthText.text = $"Health {_health.Mount} / {_health.MaxMount}";
+            _healthText.text = $"Health {Health.Value} / {Health.MaxValue}";
         }
     }
 }
